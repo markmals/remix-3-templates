@@ -8,7 +8,8 @@ Starter templates for [Remix 3](https://remix.run) (alpha).
 
 | Template                   | Runtime            | Database      |
 | -------------------------- | ------------------ | ------------- |
-| [cloudflare](./cloudflare) | Cloudflare Workers | D1            |
+| [browser](./browser)       | Service Worker     | `idb-keyval`  |
+| [bun](./bun)               | Bun                | `Bun.SQL`     |
+| [cloudflare](./cloudflare) | Cloudflare Workers | `D1Database`  |
 | [default](./default)       | Node.js            | `node:sqlite` |
 | [minimal](./minimal)       | Node.js            | None          |
-| [bun](./bun)               | Bun                | `Bun.SQL`     |

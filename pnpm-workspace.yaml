@@ -1,4 +1,5 @@
 packages:
+  - "browser"
   - "cloudflare"
   - "default"
   - "minimal"
