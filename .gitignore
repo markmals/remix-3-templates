@@ -1,0 +1,10 @@
+node_modules
+dist
+.wrangler
+*.db
+.vite
+.env
+.DS_Store
+*.lock
+*-lock.yaml
+worker-configuration.d.ts

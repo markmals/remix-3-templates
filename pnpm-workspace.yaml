@@ -1,0 +1,4 @@
+packages:
+  - "cloudflare"
+  - "default"
+  - "minimal"

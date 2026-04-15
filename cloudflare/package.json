@@ -1,0 +1,33 @@
+{
+    "name": "remix-3-cloudflare",
+    "private": true,
+    "type": "module",
+    "imports": {
+        "#/*": "./app/*"
+    },
+    "dependencies": {
+        "@hiogawa/vite-plugin-fullstack": "^0.0.11",
+        "remix": "3.0.0-alpha.4"
+    },
+    "devDependencies": {
+        "@cloudflare/vite-plugin": "^1.31.0",
+        "@types/node": "^25.5.0",
+        "@typescript/native-preview": "latest",
+        "eslint-plugin-perfectionist": "^5.8.0",
+        "oxc-parser": "^0.121.0",
+        "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+        "vite-plugin-devtools-json": "^1.0.0",
+        "vite-plus": "latest",
+        "wrangler": "^4.80.0"
+    },
+    "packageManager": "pnpm@10.33.0",
+    "pnpm": {
+        "overrides": {
+            "vite": "npm:@voidzero-dev/vite-plus-core@latest"
+        },
+        "onlyBuiltDependencies": [
+            "remix",
+            "workerd"
+        ]
+    }
+}
