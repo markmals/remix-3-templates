@@ -7,7 +7,7 @@
     },
     "dependencies": {
         "@hiogawa/vite-plugin-fullstack": "^0.0.11",
-        "remix": "3.0.0-alpha.4"
+        "remix": "3.0.0-alpha.5"
     },
     "devDependencies": {
         "@types/node": "^25.5.0",
