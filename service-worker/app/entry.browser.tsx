@@ -1,4 +1,4 @@
-import { navigate, run } from "remix/component";
+import { navigate, run } from "remix/ui";
 import entry from "#/entry.worker.ts?url";
 
 if (!navigator.serviceWorker.controller) {

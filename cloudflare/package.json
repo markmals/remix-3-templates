@@ -7,14 +7,16 @@
     },
     "dependencies": {
         "@hiogawa/vite-plugin-fullstack": "^0.0.11",
-        "remix": "3.0.0-alpha.5"
+        "remix": "3.0.0-beta.0"
     },
     "devDependencies": {
         "@cloudflare/vite-plugin": "^1.31.0",
         "@types/node": "^25.5.0",
         "@typescript/native-preview": "latest",
         "eslint-plugin-perfectionist": "^5.8.0",
+        "eslint-plugin-prefer-let": "^4.2.2",
         "oxc-parser": "^0.121.0",
+        "oxlint-tsgolint": "^0.17.2",
         "vite": "npm:@voidzero-dev/vite-plus-core@latest",
         "vite-plugin-devtools-json": "^1.0.0",
         "vite-plus": "latest",

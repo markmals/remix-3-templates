@@ -1,12 +1,15 @@
-import http from "node:http";
-import { createRequestListener } from "remix/node-fetch-server";
+import { parseEnv } from "#/utils/parse-env.ts";
+import * as s from "remix/data-schema";
+import * as coerce from "remix/data-schema/coerce";
+import { serve } from "remix/node-serve";
 
 import router from "./app/entry.server.tsx";
 
-let port = process.env.PORT || 3000;
+let PortSchema = s.object({ PORT: s.defaulted(coerce.number(), 3000) });
 
-let server = http.createServer(createRequestListener(request => router.fetch(request)));
-
-server.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+let server = serve(request => router.fetch(request), {
+    port: parseEnv(PortSchema).PORT,
 });
+
+await server.ready;
+console.log(`Server running at http://localhost:${server.port}`);

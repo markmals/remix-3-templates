@@ -1,4 +1,4 @@
-import assert from "node:assert";
+import { assert } from "remix/assert";
 import * as s from "remix/data-schema";
 
 export function parseEnv<EnvironmentVariables extends Record<string, any>>(

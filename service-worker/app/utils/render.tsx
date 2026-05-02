@@ -1,7 +1,7 @@
 import { router } from "#/router.ts";
-import type { RemixNode } from "remix/component";
+import type { RemixNode } from "remix/ui";
 
-import { renderToStream } from "remix/component/server";
+import { renderToStream } from "remix/ui/server";
 import { createHtmlResponse as html } from "remix/response/html";
 
 export function render(node: RemixNode, url: URL): Response {

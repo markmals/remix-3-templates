@@ -1,6 +1,6 @@
 import styles from "#/index.css?url";
 import entry from "#/entry.browser.tsx?url";
-import { Frame, css } from "remix/component";
+import { Frame, css } from "remix/ui";
 
 export function Document() {
     return ({ url }: { url: URL }) => (

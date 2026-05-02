@@ -1,4 +1,4 @@
-import { clientEntry, css, on } from "remix/component";
+import { clientEntry, css, on } from "remix/ui";
 
 const MAX_LENGTH = 280;
 

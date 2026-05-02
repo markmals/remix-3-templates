@@ -1,4 +1,4 @@
-import { GuestBook } from "../../app/data/schemas.ts";
+import { GuestBook } from "#/data/schemas.ts";
 import { createMigration } from "remix/data-table/migrations";
 
 export default createMigration({

@@ -1,6 +1,6 @@
-import { BunSqlDatabaseAdapter } from "#/data/bun-sql-data-table.ts";
-import { SQL } from "bun";
+import { Database as Sqlite } from "bun:sqlite";
 import { Database } from "remix/data-table";
+import { SqliteDatabaseAdapter } from "remix/data-table-sqlite";
 import { type Middleware } from "remix/fetch-router";
 
 import { Env } from "./data/schemas";
@@ -9,8 +9,8 @@ import { parseEnv } from "./utils/parse-env";
 const { DATABASE_URL } = parseEnv(Env);
 
 export function database(): Middleware {
-    let sql = new SQL(DATABASE_URL);
-    let adapter = new BunSqlDatabaseAdapter(sql, { dialect: "sqlite" });
+    let sqlite = new Sqlite(DATABASE_URL);
+    let adapter = new SqliteDatabaseAdapter(sqlite);
     let db = new Database(adapter);
 
     return (ctx, next) => {

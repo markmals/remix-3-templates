@@ -1,5 +1,5 @@
 packages:
-  - "browser"
   - "cloudflare"
   - "default"
   - "minimal"
+  - "service-worker"

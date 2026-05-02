@@ -2,13 +2,13 @@
 
 ![Remix 3 Racecar](https://remix.run/marketing/racecar-teaser-hero.webp)
 
-Starter templates for [Remix 3](https://remix.run) (alpha).
+Starter templates for [Remix 3](https://remix.run) (beta).
 
 ## Templates
 
 | Template                           | Runtime            | Database      |
 | ---------------------------------- | ------------------ | ------------- |
-| [bun](./bun)                       | Bun                | `Bun.SQL`     |
+| [bun](./bun)                       | Bun                | `bun:sqlite`  |
 | [cloudflare](./cloudflare)         | Cloudflare Workers | `D1Database`  |
 | [default](./default)               | Node.js            | `node:sqlite` |
 | [minimal](./minimal)               | Node.js            | None          |

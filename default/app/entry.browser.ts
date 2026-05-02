@@ -1,4 +1,4 @@
-import { navigate, run } from "remix/component";
+import { navigate, run } from "remix/ui";
 
 // Must be registered before `run` so `event.preventDefault` works properly
 //

@@ -2,8 +2,8 @@ import type { Controller } from "remix/fetch-router";
 
 import { Document } from "./Document.tsx";
 import { routes } from "#/routes.ts";
-import { css } from "remix/component";
-import { renderToStream } from "remix/component/server";
+import { css } from "remix/ui";
+import { renderToStream } from "remix/ui/server";
 import { createHtmlResponse as html } from "remix/response/html";
 
 function Home() {

@@ -3,7 +3,7 @@ import serverAssets from "#/entry.server.tsx?assets=ssr";
 import styles from "#/index.css?url";
 import { mergeAssets } from "@hiogawa/vite-plugin-fullstack/runtime";
 import { getContext } from "remix/async-context-middleware";
-import { Frame, css } from "remix/component";
+import { Frame, css } from "remix/ui";
 
 export function Document() {
     let { url } = getContext();

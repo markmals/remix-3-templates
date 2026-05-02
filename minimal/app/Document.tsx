@@ -2,7 +2,7 @@ import clientAssets from "./entry.browser.ts?assets=client";
 import serverAssets from "./entry.server.tsx?assets=ssr";
 import styles from "./index.css?url";
 import { mergeAssets } from "@hiogawa/vite-plugin-fullstack/runtime";
-import { type RemixNode, css } from "remix/component";
+import { type RemixNode, css } from "remix/ui";
 
 export function Document() {
     let assets = mergeAssets(clientAssets, serverAssets);

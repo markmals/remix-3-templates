@@ -2,7 +2,7 @@ import type { GuestBookEntry } from "#/data/schemas.ts";
 
 import { CharacterCounter } from "#/components/CharacterCounter.tsx";
 import { routes } from "#/routes.ts";
-import { css } from "remix/component";
+import { css } from "remix/ui";
 
 export function Welcome() {
     return (props: { entries: GuestBookEntry[] }) => (

@@ -1,4 +1,3 @@
-import { NodeSqliteDatabaseAdapter } from "#/data/node-sqlite-data-table.ts";
 import { Env } from "#/data/schemas.ts";
 import { parseEnv } from "#/utils/parse-env.ts";
 import path from "node:path";
@@ -6,6 +5,7 @@ import { DatabaseSync } from "node:sqlite";
 import * as s from "remix/data-schema";
 import { createMigrationRunner } from "remix/data-table/migrations";
 import { loadMigrations } from "remix/data-table/migrations/node";
+import { SqliteDatabaseAdapter } from "remix/data-table-sqlite";
 
 const { DATABASE_URL } = parseEnv(Env);
 
@@ -14,7 +14,7 @@ let direction = s.parse(s.defaulted(Direction, "up"), process.argv[2]);
 let to = process.argv[3];
 
 let sqlite = new DatabaseSync(DATABASE_URL);
-let adapter = new NodeSqliteDatabaseAdapter(sqlite);
+let adapter = new SqliteDatabaseAdapter(sqlite);
 let migrations = await loadMigrations(path.resolve("db/migrations"));
 let runner = createMigrationRunner(adapter, migrations);
 
