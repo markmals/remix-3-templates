@@ -1,8 +1,7 @@
 import { Env } from "#/data/schemas.ts";
+import router from "#/router.tsx";
 import { parseEnv } from "#/utils/parse-env.ts";
 import { serve } from "remix/node-serve";
-
-import router from "./app/entry.server.tsx";
 
 const { PORT } = parseEnv(Env);
 

@@ -1,5 +1,7 @@
 import { Handle } from "remix/ui";
 import { clientEntry, css, on } from "remix/ui";
+import { inputStyle } from "remix/ui/combobox";
+import { theme } from "remix/ui/theme";
 
 const MAX_LENGTH = 280;
 
@@ -17,7 +19,7 @@ export let CharacterCounter = clientEntry(
                         css({
                             display: "flex",
                             flexDirection: "column",
-                            gap: "calc(var(--spacing) * 1)",
+                            gap: theme.space.sm,
                         }),
                     ]}
                 >
@@ -28,24 +30,12 @@ export let CharacterCounter = clientEntry(
                                 count = event.currentTarget.value.length;
                                 handle.update();
                             }),
+                            inputStyle,
                             css({
-                                padding: "calc(var(--spacing) * 2) calc(var(--spacing) * 3)",
-                                borderRadius: "var(--radius-md)",
-                                border: "1px solid var(--color-gray-300)",
-                                fontSize: "var(--text-sm)",
+                                paddingBlock: theme.space.sm,
                                 resize: "vertical",
-                                "&:focus": {
-                                    outline: "2px solid var(--color-blue-500)",
-                                    outlineOffset: "-1px",
-                                },
-                                "@media (prefers-color-scheme: dark)": {
-                                    backgroundColor: "var(--color-gray-900)",
-                                    border: "1px solid var(--color-gray-700)",
-                                    color: "var(--color-gray-100)",
-                                    "&:focus": {
-                                        outline: "2px solid var(--color-blue-400)",
-                                    },
-                                },
+                                boxShadow:
+                                    "inset 0 1px 0 light-dark(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.04))",
                             }),
                         ]}
                         name="message"
@@ -57,17 +47,11 @@ export let CharacterCounter = clientEntry(
                         data-warning={remaining <= 20 ? "" : undefined}
                         mix={[
                             css({
-                                fontSize: "var(--text-xs)",
-                                color: "var(--color-gray-400)",
+                                fontSize: theme.fontSize.xs,
+                                color: theme.colors.text.muted,
                                 textAlign: "right",
                                 "&[data-warning]": {
-                                    color: "var(--color-red-500)",
-                                },
-                                "@media (prefers-color-scheme: dark)": {
-                                    color: "var(--color-gray-500)",
-                                    "&[data-warning]": {
-                                        color: "var(--color-red-400)",
-                                    },
+                                    color: "light-dark(#ef4444, #f87171)",
                                 },
                             }),
                         ]}

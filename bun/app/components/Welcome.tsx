@@ -3,6 +3,9 @@ import type { GuestBookEntry } from "#/data/schemas.ts";
 import { CharacterCounter } from "#/components/CharacterCounter.tsx";
 import { routes } from "#/routes.ts";
 import { css } from "remix/ui";
+import { theme } from "remix/ui/theme";
+import { Button } from "remix/ui/button";
+import { inputStyle } from "remix/ui/combobox";
 
 export function Welcome() {
     return (props: { entries: GuestBookEntry[] }) => (
@@ -13,12 +16,9 @@ export function Welcome() {
                     flexDirection: "column",
                     alignItems: "center",
                     minHeight: "100vh",
-                    fontFamily: "var(--font-sans)",
-                    color: "var(--color-gray-900)",
-                    padding: "calc(var(--spacing) * 16) calc(var(--spacing) * 4)",
-                    "@media (prefers-color-scheme: dark)": {
-                        color: "var(--color-gray-100)",
-                    },
+                    fontFamily: theme.fontFamily.sans,
+                    color: theme.colors.text.primary,
+                    padding: "4rem 1rem",
                 }),
             ]}
         >
@@ -28,8 +28,8 @@ export function Welcome() {
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
-                        gap: "calc(var(--spacing) * 4)",
-                        maxWidth: "var(--container-lg)",
+                        gap: theme.space.xl,
+                        maxWidth: "32rem",
                     }),
                 ]}
             >
@@ -37,16 +37,16 @@ export function Welcome() {
                     <source media="(prefers-color-scheme: dark)" srcSet="/remix-3-logo-dark.svg" />
                     <img
                         alt="Remix 3"
-                        mix={[css({ height: "calc(var(--spacing) * 10)" })]}
+                        mix={[css({ height: "2.5rem" })]}
                         src="/remix-3-logo-light.svg"
                     />
                 </picture>
                 <h1
                     mix={[
                         css({
-                            fontSize: "var(--text-4xl)",
-                            fontWeight: "var(--font-weight-bold)",
-                            letterSpacing: "var(--tracking-tight)",
+                            fontSize: "2.25rem",
+                            fontWeight: theme.fontWeight.bold,
+                            letterSpacing: theme.letterSpacing.tight,
                         }),
                     ]}
                 >
@@ -58,8 +58,8 @@ export function Welcome() {
                 mix={[
                     css({
                         display: "flex",
-                        gap: "calc(var(--spacing) * 6)",
-                        marginTop: "calc(var(--spacing) * 8)",
+                        gap: theme.space.xxl,
+                        marginTop: "2rem",
                     }),
                 ]}
             >
@@ -70,82 +70,78 @@ export function Welcome() {
             <section
                 mix={[
                     css({
-                        marginTop: "calc(var(--spacing) * 12)",
+                        marginTop: "3rem",
                         width: "100%",
-                        maxWidth: "var(--container-md)",
+                        maxWidth: "28rem",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "2rem",
                     }),
                 ]}
             >
-                <h2
-                    mix={[
-                        css({
-                            fontSize: "var(--text-xl)",
-                            fontWeight: "var(--font-weight-semibold)",
-                            marginBottom: "calc(var(--spacing) * 4)",
-                        }),
-                    ]}
+                <div
+                    mix={css({
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "0.5rem",
+                    })}
                 >
-                    Guest Book
-                </h2>
-
-                {props.entries.length > 0 && (
-                    <ul
-                        mix={[
-                            css({
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "calc(var(--spacing) * 3)",
-                                marginBottom: "calc(var(--spacing) * 6)",
-                            }),
-                        ]}
+                    <h2
+                        mix={css({
+                            fontSize: theme.fontSize.xl,
+                            fontWeight: theme.fontWeight.semibold,
+                        })}
                     >
-                        {props.entries.map(entry => (
-                            <li
-                                key={entry.id}
-                                mix={[
-                                    css({
-                                        padding: "calc(var(--spacing) * 3)",
-                                        borderRadius: "var(--radius-lg)",
-                                        backgroundColor: "var(--color-gray-50)",
-                                        border: "1px solid var(--color-gray-200)",
-                                        "@media (prefers-color-scheme: dark)": {
-                                            backgroundColor: "var(--color-gray-900)",
-                                            border: "1px solid var(--color-gray-800)",
-                                        },
-                                    }),
-                                ]}
-                            >
-                                <p
+                        Guest Book
+                    </h2>
+                    {props.entries.length > 0 && (
+                        <ul
+                            mix={[
+                                css({
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    gap: theme.space.lg,
+                                }),
+                            ]}
+                        >
+                            {props.entries.map(entry => (
+                                <li
+                                    key={entry.id}
                                     mix={[
                                         css({
-                                            fontWeight: "var(--font-weight-medium)",
-                                            color: "var(--color-gray-900)",
-                                            "@media (prefers-color-scheme: dark)": {
-                                                color: "var(--color-gray-100)",
-                                            },
+                                            padding: theme.space.lg,
+                                            borderRadius: theme.radius.lg,
+                                            backgroundColor: theme.surface.lvl1,
+                                            border: `1px solid ${theme.colors.border.subtle}`,
                                         }),
                                     ]}
                                 >
-                                    {entry.name}
-                                </p>
-                                <p
-                                    mix={[
-                                        css({
-                                            color: "var(--color-gray-600)",
-                                            fontSize: "var(--text-sm)",
-                                            marginTop: "calc(var(--spacing) * 1)",
-                                            "@media (prefers-color-scheme: dark)": {
-                                                color: "var(--color-gray-400)",
-                                            },
-                                        }),
-                                    ]}
-                                >
-                                    {entry.message}
-                                </p>
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                                    <p
+                                        mix={[
+                                            css({
+                                                fontWeight: theme.fontWeight.medium,
+                                                color: theme.colors.text.primary,
+                                            }),
+                                        ]}
+                                    >
+                                        {entry.name}
+                                    </p>
+                                    <p
+                                        mix={[
+                                            css({
+                                                color: theme.colors.text.muted,
+                                                fontSize: theme.fontSize.sm,
+                                                marginTop: theme.space.sm,
+                                            }),
+                                        ]}
+                                    >
+                                        {entry.message}
+                                    </p>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
 
                 <form
                     action={routes.guestBook.action.href()}
@@ -154,29 +150,16 @@ export function Welcome() {
                         css({
                             display: "flex",
                             flexDirection: "column",
-                            gap: "calc(var(--spacing) * 3)",
+                            gap: theme.space.lg,
                         }),
                     ]}
                 >
                     <input
                         mix={[
+                            inputStyle,
                             css({
-                                padding: "calc(var(--spacing) * 2) calc(var(--spacing) * 3)",
-                                borderRadius: "var(--radius-md)",
-                                border: "1px solid var(--color-gray-300)",
-                                fontSize: "var(--text-sm)",
-                                "&:focus": {
-                                    outline: "2px solid var(--color-blue-500)",
-                                    outlineOffset: "-1px",
-                                },
-                                "@media (prefers-color-scheme: dark)": {
-                                    backgroundColor: "var(--color-gray-900)",
-                                    border: "1px solid var(--color-gray-700)",
-                                    color: "var(--color-gray-100)",
-                                    "&:focus": {
-                                        outline: "2px solid var(--color-blue-400)",
-                                    },
-                                },
+                                boxShadow:
+                                    "inset 0 1px 0 light-dark(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.04))",
                             }),
                         ]}
                         name="name"
@@ -184,33 +167,14 @@ export function Welcome() {
                         required
                     />
                     <CharacterCounter />
-                    <button
-                        mix={[
-                            css({
-                                alignSelf: "flex-start",
-                                padding: "calc(var(--spacing) * 2) calc(var(--spacing) * 4)",
-                                borderRadius: "var(--radius-md)",
-                                backgroundColor: "var(--color-blue-600)",
-                                color: "var(--color-white)",
-                                fontSize: "var(--text-sm)",
-                                fontWeight: "var(--font-weight-medium)",
-                                cursor: "pointer",
-                                "&:hover": {
-                                    backgroundColor: "var(--color-blue-700)",
-                                },
-                                "@media (prefers-color-scheme: dark)": {
-                                    backgroundColor: "var(--color-blue-500)",
-                                    "&:hover": {
-                                        backgroundColor: "var(--color-blue-600)",
-                                    },
-                                },
-                            }),
-                        ]}
+                    <Button
+                        mix={css({ alignSelf: "flex-end" })}
                         rmx-target="welcome"
+                        tone="primary"
                         type="submit"
                     >
                         Sign
-                    </button>
+                    </Button>
                 </form>
             </section>
         </div>
@@ -224,17 +188,11 @@ function ResourceLink() {
             target="_blank"
             mix={[
                 css({
-                    color: "var(--color-blue-600)",
-                    fontSize: "var(--text-base)",
-                    fontWeight: "var(--font-weight-medium)",
+                    color: theme.colors.text.link,
+                    fontSize: theme.fontSize.md,
+                    fontWeight: theme.fontWeight.medium,
                     "&:hover": {
-                        color: "var(--color-blue-800)",
-                    },
-                    "@media (prefers-color-scheme: dark)": {
-                        color: "var(--color-blue-400)",
-                        "&:hover": {
-                            color: "var(--color-blue-300)",
-                        },
+                        color: "light-dark(#1e40af, #93c5fd)",
                     },
                 }),
             ]}

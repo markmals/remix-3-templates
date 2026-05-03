@@ -10,7 +10,7 @@ export function render(node: RemixNode, url: URL) {
         async resolveFrame(src, target, ctx) {
             let frameUrl = new URL(src, ctx?.currentFrameSrc ?? url);
             let headers = new Headers({ accept: "text/html" });
-            if (target) headers.set("x-remix-frame", target);
+            if (target) headers.set("x-remix-target", target);
             let response = await router.fetch(new Request(frameUrl, { headers }));
 
             if (!response.ok) {

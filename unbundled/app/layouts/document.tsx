@@ -1,6 +1,8 @@
 import { routes } from "#/routes.ts";
+import { Theme } from "#/theme.tsx";
 import { getContext } from "remix/async-context-middleware";
 import { Frame, css } from "remix/ui";
+import { theme } from "remix/ui/theme";
 
 export function Document() {
     let { url } = getContext();
@@ -9,10 +11,7 @@ export function Document() {
         <html
             lang="en"
             mix={css({
-                backgroundColor: "var(--color-white)",
-                "@media (prefers-color-scheme: dark)": {
-                    backgroundColor: "var(--color-gray-950)",
-                },
+                backgroundColor: theme.surface.lvl0,
             })}
         >
             <head>
@@ -23,14 +22,15 @@ export function Document() {
                 <link href="/favicon.ico" rel="icon" sizes="32x32" type="image/x-icon" />
                 <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
 
+                <Theme />
                 <link
-                    href={routes.assets.href({ path: "app/assets/index.css" })}
+                    href={routes.assets.href({ path: "app/assets/preflight.css" })}
                     rel="stylesheet"
                 />
 
                 <script
                     async
-                    src={routes.assets.href({ path: "app/entry.browser.ts" })}
+                    src={routes.assets.href({ path: "app/assets/entry.ts" })}
                     type="module"
                 />
             </head>

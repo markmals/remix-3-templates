@@ -17,7 +17,7 @@ export default {
             let storage = ctx.get(AppStorage);
             let entries = await storage.getMany(GuestBook);
 
-            if (ctx.headers.get("x-remix-frame") === "welcome") {
+            if (ctx.headers.get("x-remix-target") === "welcome") {
                 return frame(render(<Welcome entries={entries} />, ctx.url));
             }
 

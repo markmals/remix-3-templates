@@ -1,9 +1,9 @@
 import type { Controller } from "remix/fetch-router";
 
-import { Document } from "#/components/document.tsx";
-import { Welcome } from "#/components/welcome.tsx";
+import { Welcome } from "#/controllers/guest-book/welcome.tsx";
 import { GuestBook } from "#/data/schemas.ts";
 import { CreateGuestBookEntry } from "#/data/schemas.ts";
+import { Document } from "#/layouts/document.tsx";
 import { routes } from "#/routes.ts";
 import { render, frame } from "#/utils/render.tsx";
 import * as s from "remix/data-schema";
@@ -17,7 +17,7 @@ export default {
             let db = ctx.get(Database);
             let entries = await db.findMany(GuestBook);
 
-            if (ctx.headers.get("x-remix-frame") === "welcome") {
+            if (ctx.headers.get("x-remix-target") === "welcome") {
                 return frame(render(<Welcome entries={entries} />));
             }
 

@@ -1,9 +1,11 @@
+import { Theme } from "#/components/Theme.tsx";
 import clientAssets from "#/entry.browser.ts?assets=client";
 import serverAssets from "#/entry.server.tsx?assets=ssr";
-import styles from "#/index.css?url";
+import styles from "#/styles/preflight.css?url";
 import { mergeAssets } from "@hiogawa/vite-plugin-fullstack/runtime";
 import { getContext } from "remix/async-context-middleware";
 import { Frame, css } from "remix/ui";
+import { theme } from "remix/ui/theme";
 
 export function Document() {
     let { url } = getContext();
@@ -13,10 +15,7 @@ export function Document() {
         <html
             lang="en"
             mix={css({
-                backgroundColor: "var(--color-white)",
-                "@media (prefers-color-scheme: dark)": {
-                    backgroundColor: "var(--color-gray-950)",
-                },
+                backgroundColor: theme.surface.lvl0,
             })}
         >
             <head>
@@ -27,6 +26,7 @@ export function Document() {
                 <link href="/favicon.ico" rel="icon" sizes="32x32" type="image/x-icon" />
                 <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
 
+                <Theme />
                 <link href={styles} rel="stylesheet" />
                 {assets.css.map(attrs => (
                     <link key={attrs.href} {...attrs} rel="stylesheet" />

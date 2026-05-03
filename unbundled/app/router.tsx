@@ -1,4 +1,4 @@
-import guestBook from "#/controllers/guest-book.tsx";
+import guestBook from "#/controllers/guest-book/guest-book.tsx";
 import { database } from "#/middleware.ts";
 import { routes } from "#/routes.ts";
 import { createAssetServer } from "remix/assets";
@@ -14,12 +14,7 @@ export let assets = createAssetServer({
         "app/*path": "app/*path",
         "node_modules/*path": "node_modules/*path",
     },
-    allow: [
-        "app/assets/**/*",
-        "app/**/*.client.{ts,tsx}",
-        "app/**/*.browser.{ts,tsx}",
-        "node_modules/**",
-    ],
+    allow: ["app/assets/**/*", "node_modules/**"],
     deny: ["app/**/*.server.*", "app/entry.server.*"],
     sourceMaps: process.env.NODE_ENV === "development" ? "external" : undefined,
     scripts: {

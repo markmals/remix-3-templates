@@ -17,7 +17,7 @@ export default {
             let db = ctx.get(Database);
             let entries = await db.findMany(GuestBook);
 
-            if (ctx.headers.get("x-remix-frame") === "welcome") {
+            if (ctx.headers.get("x-remix-target") === "welcome") {
                 return frame(render(<Welcome entries={entries} />));
             }
 

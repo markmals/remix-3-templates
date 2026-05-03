@@ -1,6 +1,6 @@
 import type { RemixNode } from "remix/ui";
 
-import { assets, router } from "#/entry.server.tsx";
+import { assets, router } from "#/router.tsx";
 import path from "node:path";
 import { assert } from "remix/assert";
 import { getContext } from "remix/async-context-middleware";
@@ -27,7 +27,7 @@ export function render(node: RemixNode): ReadableStream<Uint8Array> {
         async resolveFrame(src, target, ctx) {
             let url = new URL(src, ctx?.currentFrameSrc ?? context.url);
             let headers = new Headers({ accept: "text/html" });
-            if (target) headers.set("x-remix-frame", target);
+            if (target) headers.set("x-remix-target", target);
             let response = await router.fetch(new Request(url, { headers }));
 
             if (!response.ok) {

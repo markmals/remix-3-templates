@@ -1,6 +1,6 @@
 import type { GuestBookEntry } from "#/data/schemas.ts";
 
-import { CharacterCounter } from "#/components/CharacterCounter.tsx";
+import { CharacterCounter } from "#/assets/character-counter.tsx";
 import { routes } from "#/routes.ts";
 import { css } from "remix/ui";
 import { Button } from "remix/ui/button";
@@ -185,7 +185,6 @@ function ResourceLink() {
     return (props: { href: string; label: string }) => (
         <a
             href={props.href}
-            target="_blank"
             mix={[
                 css({
                     color: theme.colors.text.link,
@@ -196,6 +195,7 @@ function ResourceLink() {
                     },
                 }),
             ]}
+            target="_blank"
         >
             {props.label}
         </a>
