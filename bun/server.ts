@@ -4,10 +4,10 @@ import { serve } from "bun";
 import * as s from "remix/data-schema";
 import * as coerce from "remix/data-schema/coerce";
 
-let PortSchema = s.object({ PORT: s.defaulted(coerce.number(), 3000) });
+const { PORT } = parseEnv(s.object({ PORT: s.defaulted(coerce.number(), 3000) }));
 
 let server = serve({
-    port: parseEnv(PortSchema).PORT,
+    port: PORT,
     fetch: request => router.fetch(request),
 });
 

@@ -5,10 +5,10 @@ import { serve } from "remix/node-serve";
 
 import router from "./app/entry.server.tsx";
 
-let PortSchema = s.object({ PORT: s.defaulted(coerce.number(), 3000) });
+const { PORT } = parseEnv(s.object({ PORT: s.defaulted(coerce.number(), 3000) }));
 
 let server = serve(request => router.fetch(request), {
-    port: parseEnv(PortSchema).PORT,
+    port: PORT,
 });
 
 await server.ready;
