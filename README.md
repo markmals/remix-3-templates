@@ -13,3 +13,4 @@ Starter templates for [Remix 3](https://remix.run) (beta).
 | [default](./default)               | Node.js            | `node:sqlite` |
 | [minimal](./minimal)               | Node.js            | None          |
 | [service-worker](./service-worker) | Service Worker     | `idb-keyval`  |
+| [unbundled](./unbundled)           | Node.js            | `node:sqlite` |
