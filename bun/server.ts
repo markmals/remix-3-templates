@@ -1,10 +1,9 @@
+import { Env } from "#/data/schemas.ts";
 import router from "#/entry.server.tsx";
 import { parseEnv } from "#/utils/parse-env.ts";
 import { serve } from "bun";
-import * as s from "remix/data-schema";
-import * as coerce from "remix/data-schema/coerce";
 
-const { PORT } = parseEnv(s.object({ PORT: s.defaulted(coerce.number(), 3000) }));
+const { PORT } = parseEnv(Env);
 
 let server = serve({
     port: PORT,
