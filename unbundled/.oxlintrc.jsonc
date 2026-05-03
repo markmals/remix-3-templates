@@ -1,5 +1,4 @@
 {
-    "ignorePatterns": ["dist/**"],
     "options": {
         "typeAware": true,
         "typeCheck": true,
