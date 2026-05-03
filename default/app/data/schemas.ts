@@ -1,12 +1,11 @@
 import * as s from "remix/data-schema";
-import * as check from "remix/data-schema/checks";
 import * as coerce from "remix/data-schema/coerce";
 import * as f from "remix/data-schema/form-data";
 import { column as c, table, type TableRow } from "remix/data-table";
 
 export let Env = s.object({
   DATABASE_URL: s.string(),
-  PORT: s.defaulted(coerce.number(), 3000),
+  PORT: s.defaulted(coerce.number(), 1612),
 });
 
 export let GuestBook = table({
