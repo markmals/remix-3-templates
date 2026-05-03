@@ -15,6 +15,7 @@
         "@typescript/native-preview": "latest",
         "eslint-plugin-perfectionist": "^5.8.0",
         "eslint-plugin-prefer-let": "^4.2.2",
+        "magic-string": "^0.30.21",
         "oxc-parser": "^0.121.0",
         "oxlint-tsgolint": "^0.22.1",
         "vite": "npm:@voidzero-dev/vite-plus-core@latest",
