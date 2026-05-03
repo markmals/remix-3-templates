@@ -13,5 +13,6 @@
         "lib": ["DOM", "DOM.Iterable", "ESNext", "WebWorker"],
         "types": ["vite/client", "@hiogawa/vite-plugin-fullstack/types"]
     },
-    "include": ["app"]
+    "include": ["**/*.ts", "**/*.tsx"],
+    "exclude": ["dist"]
 }

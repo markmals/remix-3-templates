@@ -15,5 +15,6 @@
             "#/*": ["./app/*"]
         }
     },
-    "include": ["app", "db", "server.ts"]
+    "include": ["**/*.ts", "**/*.tsx"],
+    "exclude": ["dist"]
 }
