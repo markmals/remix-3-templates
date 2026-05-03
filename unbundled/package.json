@@ -1,0 +1,36 @@
+{
+    "private": true,
+    "type": "module",
+    "imports": {
+        "#/*": "./app/*"
+    },
+    "scripts": {
+        "predev": "node --run db:migrate",
+        "dev": "node --env-file=.env --watch --import @oxc-node/core/register server.ts",
+        "start": "NODE_ENV=production node --env-file=.env --import @oxc-node/core/register server.ts",
+        "fmt": "oxfmt",
+        "lint": "oxlint --fix",
+        "check": "oxfmt --check; oxlint; tsgo --noEmit",
+        "check:fix": "oxfmt && oxlint --fix && tsgo --noEmit",
+        "db:migrate": "node --env-file=.env db/migrate.ts",
+        "db:reset": "node --env-file=.env db/reset.ts",
+        "typecheck": "tsgo --noEmit"
+    },
+    "dependencies": {
+        "remix": "3.0.0-beta.0"
+    },
+    "devDependencies": {
+        "@oxc-node/core": "^0.1.0",
+        "@types/node": "^25.6.0",
+        "@typescript/native-preview": "latest",
+        "eslint-plugin-perfectionist": "^5.8.0",
+        "eslint-plugin-prefer-let": "^4.2.2",
+        "oxfmt": "^0.47.0",
+        "oxlint": "^1.62.0",
+        "oxlint-tsgolint": "^0.22.1"
+    },
+    "engines": {
+        "node": ">=24.3.0"
+    },
+    "packageManager": "pnpm@10.33.0"
+}

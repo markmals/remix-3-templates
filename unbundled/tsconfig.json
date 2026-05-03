@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "jsx": "react-jsx",
+        "jsxImportSource": "remix/ui",
+        "noEmit": true,
+        "allowImportingTsExtensions": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "types": ["@types/node"],
+        "paths": {
+            "#/*": ["./app/*"]
+        }
+    },
+    "include": ["app", "db", "server.ts"]
+}
