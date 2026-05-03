@@ -1,27 +1,15 @@
 import type { RemixNode } from "remix/ui";
-import type { RenderToStreamOptions } from "remix/ui/server";
 
 import { assets, router } from "#/entry.server.tsx";
 import path from "node:path";
 import { assert } from "remix/assert";
 import { getContext } from "remix/async-context-middleware";
-import { createHtmlResponse as html } from "remix/response/html";
+import { isSafeHtml, type SafeHtml } from "remix/html-template";
 import { renderToStream } from "remix/ui/server";
 
-export function render(node: RemixNode): Response {
-    return html(renderToStream(node, streamOptions()));
-}
-
-export function frame(node: RemixNode): Response {
-    return new Response(renderToStream(node, streamOptions()), {
-        headers: { "Content-Type": "text/html; charset=utf-8" },
-    });
-}
-
-function streamOptions(): RenderToStreamOptions {
+export function render(node: RemixNode): ReadableStream<Uint8Array> {
     let context = getContext();
-
-    return {
+    return renderToStream(node, {
         frameSrc: context.url,
         async resolveClientEntry(entryId, component) {
             assert(
@@ -48,7 +36,7 @@ function streamOptions(): RenderToStreamOptions {
 
             return response.body ?? (await response.text());
         },
-    };
+    });
 }
 
 function titleCaseFileName(fileUrl: string): string {
@@ -60,3 +48,18 @@ function titleCaseFileName(fileUrl: string): string {
         .map(segment => segment[0]!.toUpperCase() + segment.slice(1))
         .join("");
 }
+
+type HtmlBody = string | SafeHtml | Blob | BufferSource | ReadableStream<Uint8Array>;
+
+export function createFrameResponse(body: HtmlBody, init?: ResponseInit): Response {
+    if (isSafeHtml(body)) {
+        body = String(body);
+    }
+
+    return new Response(body, {
+        ...(init ? init : {}),
+        headers: { "Content-Type": "text/html; charset=utf-8" },
+    });
+}
+
+export { createFrameResponse as frame };

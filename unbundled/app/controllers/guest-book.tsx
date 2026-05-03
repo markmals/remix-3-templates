@@ -8,6 +8,7 @@ import { routes } from "#/routes.ts";
 import { render, frame } from "#/utils/render.tsx";
 import * as s from "remix/data-schema";
 import { Database } from "remix/data-table";
+import { createHtmlResponse as html } from "remix/response/html";
 import { redirect } from "remix/response/redirect";
 
 export default {
@@ -17,10 +18,10 @@ export default {
             let entries = await db.findMany(GuestBook);
 
             if (ctx.headers.get("x-remix-frame") === "welcome") {
-                return frame(<Welcome entries={entries} />);
+                return frame(render(<Welcome entries={entries} />));
             }
 
-            return render(<Document />);
+            return html(render(<Document />));
         },
         async action(ctx) {
             let db = ctx.get(Database);

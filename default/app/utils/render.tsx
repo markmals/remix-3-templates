@@ -2,32 +2,39 @@ import type { RemixNode } from "remix/ui";
 
 import { router } from "#/entry.server.tsx";
 import { getContext } from "remix/async-context-middleware";
+import { isSafeHtml, type SafeHtml } from "remix/html-template";
 import { renderToStream } from "remix/ui/server";
-import { createHtmlResponse as html } from "remix/response/html";
 
-export function render(node: RemixNode): Response {
+export function render(node: RemixNode): ReadableStream<Uint8Array> {
     let context = getContext();
-    return html(
-        renderToStream(node, {
-            frameSrc: context.url,
-            async resolveFrame(src, target, ctx) {
-                let url = new URL(src, ctx?.currentFrameSrc ?? context.url);
-                let headers = new Headers({ accept: "text/html" });
-                if (target) headers.set("x-remix-frame", target);
-                let response = await router.fetch(new Request(url, { headers }));
+    return renderToStream(node, {
+        frameSrc: context.url,
+        async resolveFrame(src, target, ctx) {
+            let url = new URL(src, ctx?.currentFrameSrc ?? context.url);
+            let headers = new Headers({ accept: "text/html" });
+            if (target) headers.set("x-remix-target", target);
+            let response = await router.fetch(new Request(url, { headers }));
 
-                if (!response.ok) {
-                    throw new Error(`Failed to resolve frame ${url.pathname}`);
-                }
+            if (!response.ok) {
+                throw new Error(`Failed to resolve frame ${url.pathname}`);
+            }
 
-                return response.body ?? (await response.text());
-            },
-        }),
-    );
+            return response.body ?? (await response.text());
+        },
+    });
 }
 
-export function frame(node: RemixNode): Response {
-    return new Response(renderToStream(node), {
+type HtmlBody = string | SafeHtml | Blob | BufferSource | ReadableStream<Uint8Array>;
+
+export function createFrameResponse(body: HtmlBody, init?: ResponseInit): Response {
+    if (isSafeHtml(body)) {
+        body = String(body);
+    }
+
+    return new Response(body, {
+        ...(init ? init : {}),
         headers: { "Content-Type": "text/html; charset=utf-8" },
     });
 }
+
+export { createFrameResponse as frame };
