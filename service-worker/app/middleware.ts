@@ -1,4 +1,4 @@
-import { type Middleware } from "remix/fetch-router";
+import { type Middleware } from "remix/router";
 import { AppStorage } from "./data/app-storage";
 
 export function storage(): Middleware {

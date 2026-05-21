@@ -1,13 +1,13 @@
+import controller from "#/actions/controller.tsx";
 import { routes } from "#/routes.ts";
-import home from "./home.tsx";
-import { createRouter } from "remix/fetch-router";
-import { staticFiles } from "remix/static-middleware";
+import { staticFiles } from "remix/middleware/static";
+import { createRouter } from "remix/router";
 
 export let router = createRouter({
     middleware: [staticFiles("./public")],
 });
 
-router.map(routes, home);
+router.map(routes, controller);
 
 export default router;
 

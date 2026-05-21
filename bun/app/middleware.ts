@@ -1,7 +1,7 @@
 import { Database as Sqlite } from "bun:sqlite";
 import { Database } from "remix/data-table";
-import { SqliteDatabaseAdapter } from "remix/data-table-sqlite";
-import { type Middleware } from "remix/fetch-router";
+import { SqliteDatabaseAdapter } from "remix/data-table/sqlite";
+import { type Middleware } from "remix/router";
 
 import { Env } from "./data/schemas";
 import { parseEnv } from "./utils/parse-env";

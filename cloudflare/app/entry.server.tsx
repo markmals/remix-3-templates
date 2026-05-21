@@ -1,10 +1,10 @@
-import guestBook from "#/controllers/guest-book.tsx";
+import guestBook from "#/actions/guest-book.tsx";
 import { database } from "#/middleware.ts";
 import { routes } from "#/routes.ts";
-import { asyncContext } from "remix/async-context-middleware";
-import { createRouter } from "remix/fetch-router";
-import { formData } from "remix/form-data-middleware";
-import { staticFiles } from "remix/static-middleware";
+import { asyncContext } from "remix/middleware/async-context";
+import { formData } from "remix/middleware/form-data";
+import { staticFiles } from "remix/middleware/static";
+import { createRouter } from "remix/router";
 
 export let router = createRouter({
     middleware: [

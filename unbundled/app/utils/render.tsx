@@ -3,7 +3,7 @@ import type { RemixNode } from "remix/ui";
 import { assets, router } from "#/router.tsx";
 import path from "node:path";
 import { assert } from "remix/assert";
-import { getContext } from "remix/async-context-middleware";
+import { getContext } from "remix/middleware/async-context";
 import { isSafeHtml, type SafeHtml } from "remix/html-template";
 import { renderToStream } from "remix/ui/server";
 

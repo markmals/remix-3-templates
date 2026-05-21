@@ -1,10 +1,9 @@
-import type { Controller } from "remix/fetch-router";
-
-import { Document } from "./Document.tsx";
+import { Document } from "#/Document.tsx";
 import { routes } from "#/routes.ts";
+import { createHtmlResponse as html } from "remix/response/html";
+import { createController } from "remix/router";
 import { css } from "remix/ui";
 import { renderToStream } from "remix/ui/server";
-import { createHtmlResponse as html } from "remix/response/html";
 
 function Home() {
     return () => (
@@ -70,7 +69,7 @@ function Home() {
     );
 }
 
-export default {
+export default createController(routes, {
     actions: {
         async home() {
             return html(
@@ -82,4 +81,4 @@ export default {
             );
         },
     },
-} satisfies Controller<typeof routes>;
+});

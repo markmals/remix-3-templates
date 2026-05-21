@@ -1,13 +1,13 @@
 import { Env } from "#/data/schemas.ts";
 import router from "#/router.tsx";
 import { parseEnv } from "#/utils/parse-env.ts";
-import { serve } from "remix/node-serve";
+import * as http from "node:http";
+import { createRequestListener } from "remix/node-fetch-server";
 
 const { PORT } = parseEnv(Env);
 
-let server = serve(request => router.fetch(request), {
-    port: PORT,
-});
+let server = http.createServer(createRequestListener(request => router.fetch(request)));
 
-await server.ready;
-console.log(`Server running at http://localhost:${server.port}`);
+server.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+});

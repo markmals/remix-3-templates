@@ -3,7 +3,7 @@ import { parseEnv } from "#/utils/parse-env.ts";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import * as s from "remix/data-schema";
-import { SqliteDatabaseAdapter } from "remix/data-table-sqlite";
+import { SqliteDatabaseAdapter } from "remix/data-table/sqlite";
 import { createMigrationRunner } from "remix/data-table/migrations";
 import { loadMigrations } from "remix/data-table/migrations/node";
 

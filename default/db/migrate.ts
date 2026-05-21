@@ -5,7 +5,7 @@ import { DatabaseSync } from "node:sqlite";
 import * as s from "remix/data-schema";
 import { createMigrationRunner } from "remix/data-table/migrations";
 import { loadMigrations } from "remix/data-table/migrations/node";
-import { SqliteDatabaseAdapter } from "remix/data-table-sqlite";
+import { SqliteDatabaseAdapter } from "remix/data-table/sqlite";
 
 const { DATABASE_URL } = parseEnv(Env);
 

@@ -1,8 +1,8 @@
-import guestBook from "#/controllers/guest-book.tsx";
+import guestBook from "#/actions/guest-book.tsx";
 import { storage } from "#/middleware.ts";
 import { routes } from "#/routes.ts";
-import { createRouter } from "remix/fetch-router";
-import { formData } from "remix/form-data-middleware";
+import { formData } from "remix/middleware/form-data";
+import { createRouter } from "remix/router";
 
 export let router = createRouter({
     middleware: [formData(), storage()],

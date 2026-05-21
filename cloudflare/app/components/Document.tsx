@@ -3,7 +3,7 @@ import clientAssets from "#/entry.browser.ts?assets=client";
 import serverAssets from "#/entry.server.tsx?assets=ssr";
 import styles from "#/styles/preflight.css?url";
 import { mergeAssets } from "@hiogawa/vite-plugin-fullstack/runtime";
-import { getContext } from "remix/async-context-middleware";
+import { getContext } from "remix/middleware/async-context";
 import { Frame, css } from "remix/ui";
 import { theme } from "remix/ui/theme";
 

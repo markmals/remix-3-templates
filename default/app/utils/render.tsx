@@ -1,7 +1,7 @@
 import type { RemixNode } from "remix/ui";
 
 import { router } from "#/entry.server.tsx";
-import { getContext } from "remix/async-context-middleware";
+import { getContext } from "remix/middleware/async-context";
 import { isSafeHtml, type SafeHtml } from "remix/html-template";
 import { renderToStream } from "remix/ui/server";
 

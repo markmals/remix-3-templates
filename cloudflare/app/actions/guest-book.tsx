@@ -1,17 +1,15 @@
-import type { Controller } from "remix/fetch-router";
-
 import { Document } from "#/components/Document.tsx";
 import { Welcome } from "#/components/Welcome.tsx";
-import { GuestBook } from "#/data/schemas.ts";
-import { CreateGuestBookEntry } from "#/data/schemas.ts";
+import { CreateGuestBookEntry, GuestBook } from "#/data/schemas.ts";
 import { routes } from "#/routes.ts";
-import { render, frame } from "#/utils/render.tsx";
+import { frame, render } from "#/utils/render.tsx";
 import * as s from "remix/data-schema";
 import { Database } from "remix/data-table";
 import { createHtmlResponse as html } from "remix/response/html";
 import { redirect } from "remix/response/redirect";
+import { createController } from "remix/router";
 
-export default {
+export default createController(routes.guestBook, {
     actions: {
         async index(ctx) {
             let db = ctx.get(Database);
@@ -25,9 +23,9 @@ export default {
         },
         async action(ctx) {
             let db = ctx.get(Database);
-            let payload = s.parse(CreateGuestBookEntry, ctx.get(FormData));
+            let payload = s.parse(CreateGuestBookEntry, ctx.formData);
             await db.create(GuestBook, payload);
             return redirect(routes.guestBook.index.href());
         },
     },
-} satisfies Controller<typeof routes.guestBook>;
+});

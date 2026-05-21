@@ -14,7 +14,7 @@ import type {
 } from "remix/data-table";
 
 import { getTablePrimaryKey } from "remix/data-table";
-import { SqliteDatabaseAdapter } from "remix/data-table-sqlite";
+import { SqliteDatabaseAdapter } from "remix/data-table/sqlite";
 
 // The SQLite adapter's compileSql method is pure SQL generation —
 // it never touches the database instance, so null is safe here.

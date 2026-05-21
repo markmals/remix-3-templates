@@ -1,6 +1,6 @@
 import { routes } from "#/routes.ts";
 import { Theme } from "#/theme.tsx";
-import { getContext } from "remix/async-context-middleware";
+import { getContext } from "remix/middleware/async-context";
 import { Frame, css } from "remix/ui";
 import { theme } from "remix/ui/theme";
 
