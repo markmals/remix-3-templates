@@ -16,22 +16,35 @@ export default defineConfig({
     run: {
         tasks: {
             dev: {
-                dependsOn: ["typegen", "db:migrate"],
+                dependsOn: ["typegen:cloudflare", "db:bootstrap"],
                 command: "vp dev --host",
                 cache: false,
             },
-            "db:migrate": {
-                command: "node db/migrate.ts",
+            "db:generate": {
+                command: "node db/generate-migrations.ts",
             },
-            "db:reset": {
+            "db:migrate:local": {
+                dependsOn: ["db:generate"],
+                command: "wrangler d1 migrations apply DB --local",
+            },
+            "db:migrate:remote": {
+                dependsOn: ["db:generate"],
+                command: "wrangler d1 migrations apply DB --remote",
+            },
+            "db:reset:local": {
                 command: "rm -rf .wrangler/state/v3/d1",
+                cache: false,
             },
-            typegen: {
+            "db:bootstrap": {
+                dependsOn: ["db:reset:local"],
+                command: "vpr db:migrate:local && echo 'Bootstrapped database'",
+            },
+            "typegen:cloudflare": {
                 input: ["wrangler.jsonc"],
                 command: "wrangler types",
             },
             typecheck: {
-                dependsOn: ["typegen"],
+                dependsOn: ["typegen:cloudflare"],
                 command: "tsgo --noEmit",
                 cache: false,
             },
