@@ -1,4 +1,4 @@
-@layer base {
+@layer rmx-reset {
     :root {
         color-scheme: light dark;
     }
