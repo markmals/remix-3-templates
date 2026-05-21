@@ -6,8 +6,8 @@
     },
     "scripts": {
         "predev": "node --run db:migrate",
-        "dev": "node --env-file=.env --watch --import @oxc-node/core/register server.ts",
-        "start": "NODE_ENV=production node --env-file=.env --import @oxc-node/core/register server.ts",
+        "dev": "node --env-file=.env --watch --import remix/node-tsx server.ts",
+        "start": "NODE_ENV=production node --env-file=.env --import remix/node-tsx server.ts",
         "fmt": "oxfmt",
         "lint": "oxlint --fix",
         "check": "oxfmt --check; oxlint; tsgo --noEmit",
@@ -20,7 +20,6 @@
         "remix": "3.0.0-beta.2"
     },
     "devDependencies": {
-        "@oxc-node/core": "^0.1.0",
         "@types/node": "^25.6.0",
         "@typescript/native-preview": "latest",
         "eslint-plugin-perfectionist": "^5.8.0",
