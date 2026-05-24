@@ -22,7 +22,7 @@ export default defineConfig({
                 command: "rm -rf db/data.db",
             },
             typecheck: {
-                command: "tsgo --noEmit",
+                command: "tsgo",
                 cache: false,
             },
         },
