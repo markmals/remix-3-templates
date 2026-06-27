@@ -72,6 +72,7 @@ export function remix({
             },
             config() {
                 return {
+                    builder: {},
                     build: {
                         assetsInlineLimit: 0,
                     },

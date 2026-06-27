@@ -1,10 +1,19 @@
 import controller from "#/actions/controller.tsx";
+import { render } from "#/middleware/render.tsx";
 import { routes } from "#/routes.ts";
 import { staticFiles } from "remix/middleware/static";
-import { createRouter } from "remix/router";
+import { type MiddlewareContext, createRouter } from "remix/router";
 
-export let router = createRouter({
-    middleware: [staticFiles("./public")],
+type AppContext = MiddlewareContext<[ReturnType<typeof render>]>;
+
+declare module "remix/router" {
+    interface RouterTypes {
+        context: AppContext;
+    }
+}
+
+export let router = createRouter<AppContext>({
+    middleware: [staticFiles("./public"), render()],
 });
 
 router.map(routes, controller);

@@ -1,9 +1,7 @@
 import { Document } from "#/Document.tsx";
 import { routes } from "#/routes.ts";
-import { createHtmlResponse as html } from "remix/response/html";
 import { createController } from "remix/router";
 import { css } from "remix/ui";
-import { renderToStream } from "remix/ui/server";
 
 function Home() {
     return () => (
@@ -71,13 +69,11 @@ function Home() {
 
 export default createController(routes, {
     actions: {
-        async home() {
-            return html(
-                renderToStream(
-                    <Document>
-                        <Home />
-                    </Document>,
-                ),
+        async home({ render }) {
+            return render(
+                <Document>
+                    <Home />
+                </Document>,
             );
         },
     },

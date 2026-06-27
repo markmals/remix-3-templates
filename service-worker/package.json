@@ -8,7 +8,7 @@
     "dependencies": {
         "@hiogawa/vite-plugin-fullstack": "^0.0.11",
         "idb-keyval": "^6.2.2",
-        "remix": "3.0.0-beta.2"
+        "remix": "3.0.0-beta.4"
     },
     "devDependencies": {
         "@types/node": "^25.5.0",
