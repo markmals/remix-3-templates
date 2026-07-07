@@ -1,7 +1,7 @@
 import { assetsBase } from "#/routes.ts";
 import { createAssetServer } from "remix/assets";
 
-const isDevelopment = process.env.NODE_ENV === "development";
+let isDevelopment = process.env.NODE_ENV === "development";
 
 export let assetServer = createAssetServer({
     basePath: assetsBase,

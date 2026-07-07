@@ -1,8 +1,7 @@
-import { Theme } from "#/components/Theme.tsx";
+import { Theme, theme } from "#/components/Theme.tsx";
 import entry from "#/entry.browser.tsx?url";
 import styles from "#/styles/preflight.css?url";
 import { Frame, css, type Handle } from "remix/ui";
-import { theme } from "remix/ui/theme";
 
 export interface DocumentProps {
     url: URL;

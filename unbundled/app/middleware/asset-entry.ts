@@ -9,9 +9,9 @@ interface AssetEntry {
     stylesheetHref: string;
 }
 
-const assetsEntryKey = createContextKey<AssetEntry>();
-const defaultScriptEntry = path.resolve(import.meta.dirname, "../assets/entry.ts");
-const defaultStylesheetEntry = path.resolve(import.meta.dirname, "../assets/preflight.css");
+let assetsEntryKey = createContextKey<AssetEntry>();
+let defaultScriptEntry = path.resolve(import.meta.dirname, "../assets/entry.ts");
+let defaultStylesheetEntry = path.resolve(import.meta.dirname, "../assets/preflight.css");
 
 export function loadAssetEntry(
     scriptEntry = defaultScriptEntry,

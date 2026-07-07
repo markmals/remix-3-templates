@@ -1,8 +1,7 @@
 import { getAssetEntry } from "#/middleware/asset-entry.ts";
-import { Theme } from "#/theme.tsx";
+import { Theme, theme } from "#/theme.tsx";
 import { getContext } from "remix/middleware/async-context";
 import { Frame, css } from "remix/ui";
-import { theme } from "remix/ui/theme";
 
 export function Document() {
     let { url } = getContext();
@@ -28,7 +27,7 @@ export function Document() {
                     <Theme />
                     <link href={stylesheetHref} rel="stylesheet" />
                     {scriptPreloads.map(href => (
-                        <link key={href} href={href} rel="modulepreload" />
+                        <link href={href} key={href} rel="modulepreload" />
                     ))}
 
                     <script async src={scriptSrc} type="module" />

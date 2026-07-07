@@ -1,4 +1,3 @@
-import * as s from "remix/data-schema";
 import {
     clear,
     createStore,
@@ -10,6 +9,7 @@ import {
     update as idbUpdate,
     values,
 } from "idb-keyval";
+import * as s from "remix/data-schema";
 
 export interface Store<T> {
     schema: s.Schema<unknown, T>;

@@ -1,6 +1,13 @@
-import { createTheme } from "remix/ui/theme";
+/**
+ * App-owned design tokens, published to the document as CSS custom properties.
+ *
+ * Edit the values in `TOKENS`, then reference them in `css()` mixins through the
+ * exported `theme` object, e.g. `css({ gap: theme.space.md })`.
+ */
 
-export let Theme = createTheme({
+const PREFIX = "--rmx";
+
+const TOKENS = {
     fontFamily: {
         sans: '"Inter var", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
         mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
@@ -94,4 +101,62 @@ export let Theme = createTheme({
             },
         },
     },
-});
+};
+
+type TokenGroup = { [key: string]: string | TokenGroup };
+
+type TokenVars<group extends TokenGroup> = {
+    readonly [key in keyof group]: group[key] extends TokenGroup ? TokenVars<group[key]> : string;
+};
+
+const UPPER_CASE = /[A-Z]/g;
+
+function toKebabCase(key: string) {
+    return key.replace(UPPER_CASE, char => `-${char.toLowerCase()}`);
+}
+
+/** Maps a token group to `var()` references, e.g. `theme.space.md` → `"var(--rmx-space-md)"`. */
+function toVars<group extends TokenGroup>(group: group, prefix: string): TokenVars<group> {
+    let vars = Object.fromEntries(
+        Object.entries(group).map(([key, value]) => {
+            let name = `${prefix}-${toKebabCase(key)}`;
+            return [key, typeof value === "string" ? `var(${name})` : toVars(value, name)];
+        }),
+    );
+
+    // `Object.entries` erases the tree's key structure, so restore it here
+    return vars as TokenVars<group>;
+}
+
+/** Serializes a token group to CSS custom property declarations. */
+function toDeclarations(group: TokenGroup, prefix: string): string[] {
+    return Object.entries(group).flatMap(([key, value]) => {
+        let name = `${prefix}-${toKebabCase(key)}`;
+        return typeof value === "string" ? `${name}: ${value};` : toDeclarations(value, name);
+    });
+}
+
+/** Design token `var()` references for use in `css()` mixins. */
+export let theme = toVars(TOKENS, PREFIX);
+
+const CSS_TEXT = [
+    // Layer order: the preflight reset must lose to the `css()` mixin styles in `rmx`
+    "@layer rmx-reset, rmx;",
+    `:root {\n${toDeclarations(TOKENS, PREFIX)
+        .map(declaration => `    ${declaration}`)
+        .join("\n")}\n}`,
+    `@layer rmx-reset {
+    body {
+        font-family: ${theme.fontFamily.sans};
+        font-size: ${theme.fontSize.md};
+        line-height: ${theme.lineHeight.normal};
+        color: ${theme.colors.text.primary};
+        background-color: ${theme.surface.lvl0};
+    }
+}`,
+].join("\n\n");
+
+/** Defines the design tokens and base document styles; render once inside `<head>`. */
+export function Theme() {
+    return () => <style innerHTML={CSS_TEXT} />;
+}

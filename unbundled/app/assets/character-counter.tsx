@@ -1,7 +1,7 @@
+import { theme } from "#/theme.tsx";
 import { Handle } from "remix/ui";
 import { clientEntry, css, on } from "remix/ui";
 import { inputStyle } from "remix/ui/combobox";
-import { theme } from "remix/ui/theme";
 
 const MAX_LENGTH = 280;
 
