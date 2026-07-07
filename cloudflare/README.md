@@ -41,7 +41,7 @@ vp check            # format, lint, and type-check
 vp run db:migrate   # apply pending migrations to local D1
 vp run db:reset     # remove the local D1 state
 vp run typegen      # regenerate worker-configuration.d.ts from wrangler.jsonc
-vp run typecheck    # typecheck using tsgo
+vp run typecheck    # typecheck using tsc
 ```
 
 ## Deploy

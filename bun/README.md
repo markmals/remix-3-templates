@@ -42,7 +42,7 @@ vp preview          # serve the production build
 vp check            # format, lint, and type-check
 vp run db:migrate   # apply pending migrations
 vp run db:reset     # delete the local database
-vp run typecheck    # typecheck using tsgo
+vp run typecheck    # typecheck using tsc
 ```
 
 To run the built server directly with Bun:

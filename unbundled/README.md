@@ -31,7 +31,7 @@ node --run fmt          # format with Oxfmt
 node --run lint         # lint with Oxlint
 node --run check        # check formatting, linting, and typechecking
 node --run check:fix    # format, lint, and typecheck
-node --run typecheck    # tsgo
+node --run typecheck    # tsc
 ```
 
 ## How It Works

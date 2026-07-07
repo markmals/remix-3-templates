@@ -45,7 +45,7 @@ export default defineConfig({
             },
             typecheck: {
                 dependsOn: ["typegen:cloudflare"],
-                command: "tsgo",
+                command: "tsc",
                 cache: false,
             },
         },

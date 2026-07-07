@@ -39,7 +39,7 @@ vp dev              # dev server
 vp build            # production build (static files in dist/)
 vp preview          # serve the production build
 vp check            # format, lint, and type-check
-vp run typecheck    # typecheck using tsgo
+vp run typecheck    # typecheck using tsc
 ```
 
 ## Deploy

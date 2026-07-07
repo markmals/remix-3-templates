@@ -32,7 +32,7 @@ export default defineConfig({
                 cache: false,
             },
             typecheck: {
-                command: "tsgo",
+                command: "tsc",
                 cache: false,
             },
         },

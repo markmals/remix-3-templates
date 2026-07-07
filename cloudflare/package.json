@@ -12,12 +12,12 @@
     "devDependencies": {
         "@cloudflare/vite-plugin": "^1.31.0",
         "@types/node": "^25.5.0",
-        "@typescript/native-preview": "latest",
         "eslint-plugin-perfectionist": "^5.8.0",
         "eslint-plugin-prefer-let": "^4.2.2",
         "magic-string": "^0.30.21",
         "oxc-parser": "^0.121.0",
         "oxlint-tsgolint": "^0.22.1",
+        "typescript": "rc",
         "vite": "npm:@voidzero-dev/vite-plus-core@latest",
         "vite-plugin-devtools-json": "^1.0.0",
         "vite-plus": "latest",

@@ -27,7 +27,7 @@ export default defineConfig({
                 command: "rm -rf db/data.db",
             },
             typecheck: {
-                command: "tsgo",
+                command: "tsc",
                 cache: false,
             },
         },
