@@ -1,8 +1,8 @@
 import { form, get, route } from "remix/routes";
 
-export let assetsBase = "/assets";
+export const ASSETS_BASE = "/assets";
 
 export let routes = route({
-    assets: get(`${assetsBase}/*path`),
+    assets: get(`${ASSETS_BASE}/*path`),
     guestBook: form("/"),
 });
