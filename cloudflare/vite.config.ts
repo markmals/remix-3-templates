@@ -1,8 +1,7 @@
 import { cloudflare } from "@cloudflare/vite-plugin";
+import { remix } from "@pitlane/dev";
 import devtoolsJson from "vite-plugin-devtools-json";
 import { defineConfig } from "vite-plus";
-
-import { remix } from "./remix.plugin.ts";
 
 export default defineConfig({
     plugins: [

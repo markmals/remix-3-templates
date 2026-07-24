@@ -6,19 +6,17 @@
         "#/*": "./app/*"
     },
     "dependencies": {
-        "@hiogawa/vite-plugin-fullstack": "^0.0.11",
         "remix": "3.0.0-beta.5"
     },
     "devDependencies": {
         "@cloudflare/vite-plugin": "^1.31.0",
+        "@pitlane/dev": "^0.1.1",
         "@types/node": "^25.5.0",
         "eslint-plugin-perfectionist": "^5.8.0",
         "eslint-plugin-prefer-let": "^4.2.2",
-        "magic-string": "^0.30.21",
-        "oxc-parser": "^0.121.0",
         "oxlint-tsgolint": "^0.22.1",
         "typescript": "rc",
-        "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+        "vite": "npm:@voidzero-dev/vite-plus-core@^0.2.6",
         "vite-plugin-devtools-json": "^1.0.0",
         "vite-plus": "latest",
         "wrangler": "^4.80.0"

@@ -1,4 +1,4 @@
-import { mergeAssets } from "@hiogawa/vite-plugin-fullstack/runtime";
+import { mergeAssets } from "@pitlane/dev/runtime";
 import { type Handle, type RemixNode, css } from "remix/ui";
 
 import serverAssets from "./entry.server.tsx?assets=ssr";
