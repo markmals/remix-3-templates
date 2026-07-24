@@ -1,7 +1,8 @@
+import { serve } from "bun";
+
 import { Env } from "#/data/schemas.ts";
 import router from "#/entry.server.tsx";
 import { parseEnv } from "#/utils/parse-env.ts";
-import { serve } from "bun";
 
 const { PORT } = parseEnv(Env);
 

@@ -1,5 +1,6 @@
-import entry from "#/entry.worker.ts?url";
 import { navigate, run } from "remix/ui";
+
+import entry from "#/entry.worker.ts?url";
 
 if (!navigator.serviceWorker.controller) {
     await navigator.serviceWorker.register(entry, { type: "module", scope: "/" });

@@ -1,7 +1,8 @@
-import { Document } from "#/Document.tsx";
-import { routes } from "#/routes.ts";
 import { createController } from "remix/router";
 import { css } from "remix/ui";
+
+import { Document } from "#/Document.tsx";
+import { routes } from "#/routes.ts";
 
 function Home() {
     return () => (

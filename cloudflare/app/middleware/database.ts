@@ -1,7 +1,8 @@
-import { createD1DatabaseAdapter } from "#/data/d1-data-table.ts";
 import { env } from "cloudflare:workers";
 import { createDatabase, Database } from "remix/data-table";
 import { type Middleware } from "remix/router";
+
+import { createD1DatabaseAdapter } from "#/data/d1-data-table.ts";
 
 export function loadDatabase(): Middleware<{
     key: typeof Database;

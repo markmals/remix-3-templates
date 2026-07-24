@@ -1,5 +1,6 @@
-import { router } from "#/router.ts";
 import { addEventListeners, TypedEventTarget } from "remix/ui";
+
+import { router } from "#/router.ts";
 
 declare const self: ServiceWorkerGlobalScope & TypedEventTarget<ServiceWorkerGlobalScopeEventMap>;
 

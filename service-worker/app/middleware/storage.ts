@@ -1,5 +1,6 @@
-import { AppStorage } from "#/data/app-storage.ts";
 import { type Middleware } from "remix/router";
+
+import { AppStorage } from "#/data/app-storage.ts";
 
 export function loadStorage(): Middleware<{
     key: typeof AppStorage;
