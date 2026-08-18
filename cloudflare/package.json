@@ -6,11 +6,11 @@
         "#/*": "./app/*"
     },
     "dependencies": {
-        "remix": "3.0.0-beta.5"
+        "remix": "3.0.0-beta.10"
     },
     "devDependencies": {
         "@cloudflare/vite-plugin": "^1.31.0",
-        "@pitlane/dev": "^0.1.1",
+        "@pitlane/dev": "^0.2.0",
         "@types/node": "^25.5.0",
         "eslint-plugin-perfectionist": "^5.8.0",
         "eslint-plugin-prefer-let": "^4.2.2",
