@@ -1,16 +1,16 @@
+import { createD1Database } from "@pitlane/data-table-d1";
 import { env } from "cloudflare:workers";
-import { createDatabase, Database } from "remix/data-table";
+import { Database } from "remix/data-table";
 import { type Middleware } from "remix/router";
-
-import { createD1DatabaseAdapter } from "#/data/d1-data-table.ts";
 
 export function loadDatabase(): Middleware<{
     key: typeof Database;
     value: Database;
     property: "db";
 }> {
-    let adapter = createD1DatabaseAdapter(env.DB);
-    let db = createDatabase(adapter);
+    // Built once per isolate: the binding is stable, so there is nothing to
+    // rebuild per request.
+    let db = createD1Database(env.DB);
 
     return (context, next) => {
         context.set(Database, db, { property: "db" });
