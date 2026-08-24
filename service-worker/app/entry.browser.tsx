@@ -70,10 +70,10 @@ if (!navigator.serviceWorker.controller) {
 
             return exported;
         },
-        async resolveFrame(src, signal, target) {
+        async resolveFrame(src, options) {
             let headers = new Headers({ accept: "text/html" });
-            if (target) headers.set("x-remix-frame", target);
-            let response = await fetch(src, { headers, signal });
+            if (options?.target) headers.set("x-remix-frame", options.target);
+            let response = await fetch(src, { headers, signal: options?.signal });
             return response.body ?? (await response.text());
         },
     });

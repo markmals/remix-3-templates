@@ -10,8 +10,8 @@ export let assetServer = createAssetServer({
         "app/*path": "app/*path",
         "node_modules/*path": "node_modules/*path",
     },
-    allow: [`app${ASSETS_BASE}/**/*`, "node_modules/**"],
-    deny: ["app/**/*.server.*", "app/entry.server.*"],
+    allowFiles: [`app${ASSETS_BASE}/**/*`, "node_modules/**"],
+    denyFiles: ["app/**/*.server.*", "app/entry.server.*"],
     sourceMaps: isDevelopment ? "external" : undefined,
     minify: !isDevelopment,
     scripts: {
