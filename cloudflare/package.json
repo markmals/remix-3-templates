@@ -6,7 +6,7 @@
         "#/*": "./app/*"
     },
     "dependencies": {
-        "@pitlane/data-table-d1": "https://pkg.pr.new/pitlane-tools/pitlane/@pitlane/data-table-d1@10210ec",
+        "@pitlane/data-table-d1": "^0.1.0",
         "remix": "3.0.0-beta.10"
     },
     "devDependencies": {
