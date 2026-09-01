@@ -1,4 +1,4 @@
-import { addEventListeners, TypedEventTarget } from "remix/ui";
+import { TypedEventTarget } from "remix/ui";
 
 import { router } from "#/router.ts";
 
@@ -6,14 +6,25 @@ declare const self: ServiceWorkerGlobalScope & TypedEventTarget<ServiceWorkerGlo
 
 let { signal } = new AbortController();
 
-addEventListeners(self, signal, {
-    install() {
+self.addEventListener(
+    "install",
+    () => {
         self.skipWaiting();
     },
-    activate(event) {
+    { signal },
+);
+
+self.addEventListener(
+    "activate",
+    event => {
         event.waitUntil(self.clients.claim());
     },
-    fetch(event) {
+    { signal },
+);
+
+self.addEventListener(
+    "fetch",
+    event => {
         let url = new URL(event.request.url);
         let sameOrigin = url.origin === location.origin;
 
@@ -29,4 +40,5 @@ addEventListeners(self, signal, {
         // Navigation and same-origin route requests → fetch router (after DB is ready)
         event.respondWith(router.fetch(event.request));
     },
-});
+    { signal },
+);

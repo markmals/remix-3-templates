@@ -6,9 +6,9 @@ let isDevelopment = process.env.NODE_ENV === "development";
 export let assetServer = createAssetServer({
     basePath: ASSETS_BASE,
     rootDir: process.cwd(),
-    fileMap: {
-        "app/*path": "app/*path",
-        "node_modules/*path": "node_modules/*path",
+    mounts: {
+        app: "app",
+        node_modules: "node_modules",
     },
     allowFiles: [`app${ASSETS_BASE}/**/*`, "node_modules/**"],
     denyFiles: ["app/**/*.server.*", "app/entry.server.*"],

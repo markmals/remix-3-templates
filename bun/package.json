@@ -9,7 +9,7 @@
         "postinstall": "cd node_modules && rm -rf vite && ln -s @voidzero-dev/vite-plus-core vite"
     },
     "dependencies": {
-        "remix": "3.0.0-beta.10"
+        "remix": "3.0.0-rc.1"
     },
     "devDependencies": {
         "@pitlane/dev": "^0.2.0",

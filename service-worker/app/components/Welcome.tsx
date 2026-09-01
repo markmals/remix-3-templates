@@ -184,8 +184,8 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                         />
                         <CharacterCounter />
                         <button
+                            data-rmx-target="welcome"
                             mix={[button({ tone: "primary" }), css({ alignSelf: "flex-end" })]}
-                            rmx-target="welcome"
                             type="submit"
                         >
                             Sign
