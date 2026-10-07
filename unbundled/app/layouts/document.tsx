@@ -1,13 +1,14 @@
 import { getAssetEntry } from "#/middleware/asset-entry.ts";
 import { Theme, theme } from "#/theme.tsx";
+import { Frame, css } from "remix/component";
+import { ImportMap } from "remix/component/server";
 import { getContext } from "remix/middleware/async-context";
-import { Frame, css } from "remix/ui";
 
 export function Document() {
     let { url } = getContext();
 
     return () => {
-        let { scriptSrc, scriptPreloads, stylesheetHref } = getAssetEntry();
+        let { script, stylesheetHref } = getAssetEntry();
 
         return (
             <html
@@ -26,11 +27,12 @@ export function Document() {
 
                     <Theme />
                     <link href={stylesheetHref} rel="stylesheet" />
-                    {scriptPreloads.map(href => (
+                    <ImportMap value={script.importMap} />
+                    {script.preloads.map(href => (
                         <link href={href} key={href} rel="modulepreload" />
                     ))}
 
-                    <script async src={scriptSrc} type="module" />
+                    <script async src={script.href} type="module" />
                 </head>
                 <body>
                     <Frame name="welcome" src={url.toString()} />

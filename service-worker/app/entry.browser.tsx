@@ -1,4 +1,4 @@
-import { navigate, run } from "remix/ui";
+import { navigate, run } from "remix/component";
 
 import entry from "#/entry.worker.ts?url";
 

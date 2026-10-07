@@ -7,7 +7,7 @@ import { routes } from "#/routes.ts";
 
 type AppContext = MiddlewareContext<[ReturnType<typeof render>]>;
 
-declare module "remix/router" {
+declare module "remix" {
     interface RouterTypes {
         context: AppContext;
     }

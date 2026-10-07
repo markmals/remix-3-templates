@@ -1,8 +1,8 @@
-import type { RemixNode } from "remix/ui";
+import type { RemixNode } from "remix/component";
 
+import { renderToStream } from "remix/component/server";
 import { renderWith } from "remix/middleware/render";
 import { createHtmlResponse } from "remix/response/html";
-import { renderToStream } from "remix/ui/server";
 
 export function render() {
     return renderWith(

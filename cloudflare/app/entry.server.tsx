@@ -12,7 +12,7 @@ type AppContext = MiddlewareContext<
     [ReturnType<typeof formData>, ReturnType<typeof loadDatabase>, ReturnType<typeof render>]
 >;
 
-declare module "remix/router" {
+declare module "remix" {
     interface RouterTypes {
         context: AppContext;
     }

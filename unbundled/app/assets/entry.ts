@@ -1,4 +1,9 @@
-import { navigate, run } from "remix/ui";
+import { navigate, run } from "remix/component";
+import {
+    detectMultipleImportMapSupport,
+    importModule,
+    preloadShim,
+} from "remix/multiple-import-maps-polyfill";
 
 // Must be registered before `run` so `event.preventDefault` works properly
 //
@@ -41,7 +46,7 @@ navigation.addEventListener("navigate", async event => {
 
 run({
     async loadModule(moduleUrl, exportName) {
-        let mod = await import(moduleUrl);
+        let mod = await importModule(moduleUrl);
         let exported = mod[exportName];
 
         if (typeof exported !== "function") {
@@ -51,6 +56,12 @@ run({
         }
 
         return exported;
+    },
+    async processClientEntryPreloads(preloads) {
+        if (await detectMultipleImportMapSupport()) return preloads;
+
+        preloadShim(preloads);
+        return [];
     },
     async resolveFrame(src, options) {
         let headers = new Headers({ accept: "text/html" });

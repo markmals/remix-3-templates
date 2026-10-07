@@ -1,5 +1,5 @@
 import { mergeAssets } from "@pitlane/dev/runtime";
-import { type Handle, type RemixNode, css } from "remix/ui";
+import { type Handle, type RemixNode, css } from "remix/component";
 
 import serverAssets from "./entry.server.tsx?assets=ssr";
 import styles from "./index.css?url";

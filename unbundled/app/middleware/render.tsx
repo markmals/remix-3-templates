@@ -1,11 +1,11 @@
-import type { RemixNode } from "remix/ui";
+import type { RemixNode } from "remix/component";
 
 import { assetServer } from "#/utils/assets.ts";
 import * as path from "node:path";
 import { assert } from "remix/assert";
+import { renderToStream } from "remix/component/server";
 import { renderWith } from "remix/middleware/render";
 import { createHtmlResponse } from "remix/response/html";
-import { renderToStream } from "remix/ui/server";
 
 export function render() {
     return renderWith(
@@ -20,9 +20,13 @@ export function render() {
                         );
 
                         let [filePath, fragment] = entryId.split("#");
+                        let { href, importMap, preloads } =
+                            await assetServer.getScriptEntry(filePath);
 
                         return {
-                            href: await assetServer.getHref(filePath),
+                            href,
+                            importMap,
+                            preloads,
                             exportName: fragment || component.name || titleCaseFileName(filePath),
                         };
                     },

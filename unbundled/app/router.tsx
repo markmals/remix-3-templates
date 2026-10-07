@@ -18,7 +18,7 @@ type AppContext = MiddlewareContext<
     ]
 >;
 
-declare module "remix/router" {
+declare module "remix" {
     interface RouterTypes {
         context: AppContext;
     }
