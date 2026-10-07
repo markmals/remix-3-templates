@@ -1,8 +1,9 @@
 import { formData } from "remix/middleware/form-data";
+import { render } from "remix/middleware/render";
 import { type MiddlewareContext, createRouter } from "remix/router";
 
 import guestBook from "#/actions/guest-book.tsx";
-import { render } from "#/middleware/render.tsx";
+import { assets } from "#/assets.ts";
 import { loadStorage } from "#/middleware/storage.ts";
 import { routes } from "#/routes.ts";
 
@@ -17,7 +18,7 @@ declare module "remix" {
 }
 
 export let router = createRouter<AppContext>({
-    middleware: [formData(), loadStorage(), render()],
+    middleware: [formData(), loadStorage(), render({ assets })],
 });
 
 router.map(routes.guestBook, guestBook);
