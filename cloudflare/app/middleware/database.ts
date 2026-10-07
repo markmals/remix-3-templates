@@ -1,5 +1,5 @@
-import { createD1Database } from "@pitlane/data-table-d1";
 import { env } from "cloudflare:workers";
+import { createD1Database } from "pitlane/data-table-d1";
 import { Database } from "remix/data-table";
 import { type Middleware } from "remix/router";
 

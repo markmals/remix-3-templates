@@ -10,7 +10,7 @@
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "types": ["@types/node", "@types/bun", "vite/client", "@pitlane/dev/assets"]
+        "types": ["@types/node", "@types/bun", "vite/client"]
     },
     "include": ["**/*.ts", "**/*.tsx"],
     "exclude": ["dist"]

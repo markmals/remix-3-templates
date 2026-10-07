@@ -1,4 +1,4 @@
-import { remix } from "@pitlane/dev";
+import { remix } from "pitlane/vite-plugin-remix";
 import devtoolsJson from "vite-plugin-devtools-json";
 import { defineConfig, loadEnv } from "vite-plus";
 let env = loadEnv("development", process.cwd(), "");

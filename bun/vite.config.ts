@@ -1,4 +1,4 @@
-import { remix } from "@pitlane/dev";
+import { remix } from "pitlane/vite-plugin-remix";
 import devtoolsJson from "vite-plugin-devtools-json";
 import { defineConfig } from "vite-plus";
 export default defineConfig({
