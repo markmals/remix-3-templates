@@ -1,16 +1,12 @@
-import { mergeAssets } from "@pitlane/dev/runtime";
-import { type Handle, type RemixNode, css } from "remix/ui";
+import { type Handle, type RemixNode, css } from "remix/component";
 
-import serverAssets from "./entry.server.tsx?assets=ssr";
-import styles from "./index.css?url";
+import { stylesheetHref, stylesheets } from "#/assets.ts";
 
 export interface DocumentProps {
     children?: RemixNode;
 }
 
 export function Document(handle: Handle<DocumentProps>) {
-    let assets = mergeAssets(serverAssets);
-
     return () => {
         let { children } = handle.props;
 
@@ -32,9 +28,9 @@ export function Document(handle: Handle<DocumentProps>) {
                     <link href="/favicon.ico" rel="icon" sizes="32x32" type="image/x-icon" />
                     <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
 
-                    <link href={styles} rel="stylesheet" />
-                    {assets.css.map(attrs => (
-                        <link key={attrs.href} {...attrs} rel="stylesheet" />
+                    <link href={stylesheetHref} rel="stylesheet" />
+                    {stylesheets.map(href => (
+                        <link href={href} key={href} rel="stylesheet" />
                     ))}
                 </head>
                 <body>{children}</body>

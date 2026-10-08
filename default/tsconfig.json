@@ -4,13 +4,13 @@
         "module": "ESNext",
         "moduleResolution": "bundler",
         "jsx": "react-jsx",
-        "jsxImportSource": "remix/ui",
+        "jsxImportSource": "remix/component",
         "noEmit": true,
         "allowImportingTsExtensions": true,
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "types": ["@types/node", "vite/client", "@pitlane/dev/assets"]
+        "types": ["@types/node", "vite/client"]
     },
     "include": ["**/*.ts", "**/*.tsx"],
     "exclude": ["dist"]

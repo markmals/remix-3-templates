@@ -1,4 +1,4 @@
-import { remix } from "@pitlane/dev";
+import { remix } from "pitlane/vite-plugin-remix";
 import devtoolsJson from "vite-plugin-devtools-json";
 import { defineConfig } from "vite-plus";
 export default defineConfig({
@@ -10,6 +10,10 @@ export default defineConfig({
         }),
         devtoolsJson(),
     ],
+    // The document is this app's own `index.html`; the Service Worker renders
+    // every route from there. `remix()` otherwise defaults to `appType:
+    // "custom"`, which is for apps whose server answers the document request.
+    appType: "spa",
     server: {
         headers: {
             "Service-Worker-Allowed": "/",

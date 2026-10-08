@@ -1,4 +1,5 @@
-import { navigate, run } from "remix/ui";
+import { revalidate } from "pitlane/vite-plugin-remix/hmr";
+import { navigate, run } from "remix/component";
 
 // Must be registered before `run` so `event.preventDefault` works properly
 //
@@ -39,7 +40,7 @@ navigation.addEventListener("navigate", async event => {
     await navigate(event.destination.url, { target, src, resetScroll });
 });
 
-run({
+let app = run({
     async loadModule(moduleUrl, exportName) {
         let mod = await import(/* @vite-ignore */ moduleUrl);
         let exported = mod[exportName];
@@ -59,3 +60,10 @@ run({
         return response.body ?? (await response.text());
     },
 });
+
+// During `vite dev`, pitlane/vite-plugin-remix broadcasts `server:update` when a
+// server-only module changes; `revalidate` reloads the top frame in place.
+// Builds drop this branch.
+if (import.meta.hot) {
+    import.meta.hot.on("server:update", () => revalidate(app));
+}

@@ -5,6 +5,8 @@
  * exported `theme` object, e.g. `css({ gap: theme.space.md })`.
  */
 
+import { unsafeHTML } from "remix/component";
+
 const PREFIX = "--rmx";
 
 const TOKENS = {
@@ -158,5 +160,5 @@ const CSS_TEXT = [
 
 /** Defines the design tokens and base document styles; render once inside `<head>`. */
 export function Theme() {
-    return () => <style innerHTML={CSS_TEXT} />;
+    return () => <style innerHTML={unsafeHTML(CSS_TEXT)} />;
 }

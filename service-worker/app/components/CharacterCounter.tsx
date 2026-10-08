@@ -1,7 +1,7 @@
-import { clientEntry, css, on } from "remix/ui";
-import { inputStyle } from "remix/ui/combobox";
+import { clientEntry, css, on } from "remix/component";
 
 import { theme } from "#/components/Theme.tsx";
+import { field } from "#/styles/controls.ts";
 
 const MAX_LENGTH = 280;
 
@@ -28,12 +28,10 @@ export let CharacterCounter = clientEntry(import.meta.url, handle => {
                             count = event.currentTarget.value.length;
                             handle.update();
                         }),
-                        inputStyle,
+                        field,
                         css({
                             paddingBlock: theme.space.sm,
                             resize: "vertical",
-                            boxShadow:
-                                "inset 0 1px 0 light-dark(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.04))",
                         }),
                     ]}
                     name="message"

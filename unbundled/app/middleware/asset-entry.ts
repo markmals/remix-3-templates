@@ -1,11 +1,11 @@
 import { assetServer } from "#/utils/assets.ts";
 import * as path from "node:path";
+import { type ScriptEntry } from "remix/assets";
 import { getContext } from "remix/middleware/async-context";
 import { createContextKey, type Middleware } from "remix/router";
 
 interface AssetEntry {
-    scriptSrc: string;
-    scriptPreloads: string[];
+    script: ScriptEntry;
     stylesheetHref: string;
 }
 
@@ -18,13 +18,12 @@ export function loadAssetEntry(
     stylesheetEntry = defaultStylesheetEntry,
 ): Middleware<{ key: typeof assetsEntryKey; value: AssetEntry }> {
     return async (context, next) => {
-        let [scriptSrc, scriptPreloads, stylesheetHref] = await Promise.all([
-            assetServer.getHref(scriptEntry),
-            assetServer.getPreloads(scriptEntry).catch(() => []),
+        let [script, stylesheetHref] = await Promise.all([
+            assetServer.getScriptEntry(scriptEntry),
             assetServer.getHref(stylesheetEntry),
         ]);
 
-        context.set(assetsEntryKey, { scriptSrc, scriptPreloads, stylesheetHref });
+        context.set(assetsEntryKey, { script, stylesheetHref });
         return next();
     };
 }

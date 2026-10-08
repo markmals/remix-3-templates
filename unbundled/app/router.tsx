@@ -1,11 +1,11 @@
 import guestBook from "#/actions/guest-book/guest-book.tsx";
 import { loadAssetEntry } from "#/middleware/asset-entry.ts";
 import { loadDatabase } from "#/middleware/database.ts";
-import { render } from "#/middleware/render.tsx";
 import { routes } from "#/routes.ts";
 import { assetServer } from "#/utils/assets.ts";
 import { asyncContext } from "remix/middleware/async-context";
 import { formData } from "remix/middleware/form-data";
+import { render } from "remix/middleware/render";
 import { staticFiles } from "remix/middleware/static";
 import { type MiddlewareContext, createRouter } from "remix/router";
 
@@ -18,7 +18,7 @@ type AppContext = MiddlewareContext<
     ]
 >;
 
-declare module "remix/router" {
+declare module "remix" {
     interface RouterTypes {
         context: AppContext;
     }
@@ -31,7 +31,7 @@ export let router = createRouter<AppContext>({
         asyncContext(),
         loadDatabase(),
         loadAssetEntry(),
-        render(),
+        render({ assets: assetServer }),
     ],
 });
 

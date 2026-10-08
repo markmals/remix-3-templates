@@ -1,4 +1,4 @@
-import { TypedEventTarget } from "remix/ui";
+import { TypedEventTarget } from "remix/component";
 
 import { router } from "#/router.ts";
 

@@ -1,4 +1,4 @@
-import { Frame, css, type Handle } from "remix/ui";
+import { Frame, css, type Handle } from "remix/component";
 
 import { Theme, theme } from "#/components/Theme.tsx";
 import entry from "#/entry.browser.tsx?url";

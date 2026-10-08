@@ -2,7 +2,7 @@
 
 ![Remix 3 Racecar](https://remix.run/marketing/racecar-teaser-hero.webp)
 
-Starter templates for [Remix 3](https://remix.run) (release candidate).
+Starter templates for [Remix 3](https://remix.run).
 
 ## Templates
 

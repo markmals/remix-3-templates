@@ -1,11 +1,10 @@
 import type { GuestBookEntry } from "#/data/schemas.ts";
 
 import { CharacterCounter } from "#/assets/character-counter.tsx";
+import { button, field } from "#/controls.ts";
 import { routes } from "#/routes.ts";
 import { theme } from "#/theme.tsx";
-import { css, type Handle } from "remix/ui";
-import { button } from "remix/ui/button";
-import { inputStyle } from "remix/ui/combobox";
+import { css, type Handle } from "remix/component";
 
 export interface WelcomeProps {
     entries: GuestBookEntry[];
@@ -164,22 +163,11 @@ export function Welcome(handle: Handle<WelcomeProps>) {
                             }),
                         ]}
                     >
-                        <input
-                            mix={[
-                                inputStyle,
-                                css({
-                                    boxShadow:
-                                        "inset 0 1px 0 light-dark(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.04))",
-                                }),
-                            ]}
-                            name="name"
-                            placeholder="Your name"
-                            required
-                        />
+                        <input mix={[field]} name="name" placeholder="Your name" required />
                         <CharacterCounter />
                         <button
                             data-rmx-target="welcome"
-                            mix={[button({ tone: "primary" }), css({ alignSelf: "flex-end" })]}
+                            mix={[button, css({ alignSelf: "flex-end" })]}
                             type="submit"
                         >
                             Sign
